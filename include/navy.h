@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Mon Jan 30 09:50:00 2017 Corlouer Doriann
+** Last update Mon Jan 30 10:08:10 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -30,5 +30,17 @@ typedef struct	s_map
   int		player_no;
   char		**map;
 }		t_map;
+
+typedef struct	s_2DVector
+{
+  int		x;
+  int		y;
+}		t_2DVector;
+
+t_map	*map_create(const int fd);
+void	map_show(const t_map *map);
+int	map_pos_isvalid(const char *pos);
+void	map_pos_toint(const char *coord, t_2DVector *pos);
+void	map_destroy(t_map **map);
 
 #endif
