@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:19:38 2017 Corlouer Doriann
-** Last update Mon Jan 30 16:19:07 2017 Corlouer Doriann
+** Last update Mon Jan 30 16:41:28 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -51,8 +51,6 @@ int	game_ended(const t_map *p1, const t_map *p2)
 	return 1;
       else if (count_p1 > count_p2)
 	return 2;
-      else
-	return 3;
     }
   return FALSE;
 }

@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Mon Jan 30 15:45:37 2017 Corlouer Doriann
+** Last update Mon Jan 30 16:41:01 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -16,11 +16,6 @@ static int	end_game(int end_val)
     my_putstr("I won\n");
   else if (end_val == 2)
     my_putstr("Ennemy won\n");
-  else
-    {
-      my_putstr("Game is a tie\n");
-      return 1;
-    }
   return (end_val - 1);
 }
 
