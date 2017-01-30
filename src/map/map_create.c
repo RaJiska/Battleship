@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:54:28 2017 Corlouer Doriann
-** Last update Mon Jan 30 14:00:30 2017 Corlouer Doriann
+** Last update Mon Jan 30 16:18:13 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -28,7 +28,7 @@ static void	draw_ship(t_map **map, int nb,
   j = a->y;
   while ((i != b->x) || (j != b->y))
     {
-      if ((*map)->map[j][i] == '.')
+      if ((*map)->map[j][i] != '.')
 	{
 	  map_destroy(map);
 	  return;
@@ -39,7 +39,7 @@ static void	draw_ship(t_map **map, int nb,
       else
 	i++;
     }
-  if ((*map)->map[j][i] == '.')
+  if ((*map)->map[j][i] != '.')
     {
       map_destroy(map);
       return;
@@ -107,13 +107,13 @@ t_map	*map_create(const int fd, int player_no, pid_t pid)
   while (it < NAVY_MAP_H)
     {
       map->map[it] = malloc(sizeof(char) * (NAVY_MAP_W + 1));
-      my_memset(map->map[it], '.', NAVY_MAP_W - 1);
+      my_memset(map->map[it], '.', NAVY_MAP_W);
       map->map[it][NAVY_MAP_W] = '\0';
       it++;
     }
-  if (fd >= 0)
-    place_ships(&map, fd);
   map->pid = ((fd < 0) ? pid : getpid());
   map->player_no = player_no;
+  if (fd >= 0)
+    place_ships(&map, fd);
   return map;
 }

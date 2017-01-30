@@ -5,16 +5,20 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:38:07 2017 Corlouer Doriann
-** Last update Mon Jan 30 10:55:51 2017 Corlouer Doriann
+** Last update Mon Jan 30 15:59:34 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
 
-static int	exit_on_err(int fd, const char *s)
+static int	exit_on_err(int fd, t_map *p1, t_map *p2, const char *s)
 {
   my_putstr_err(s);
   if (fd > (-1))
     close(fd);
+  if (p1 != NULL)
+    map_destroy(&p1);
+  if (p2 != NULL)
+    map_destroy(&p2);
   return 84;
 }
 
@@ -41,13 +45,23 @@ static int	needs_help(int argc, char **argv)
 int	main(int argc, char **argv)
 {
   int	fd;
-  t_map	*map;
+  t_map	*p1;
+  t_map	*p2;
 
   if (argc > 3 || argc < 2)
-    return (exit_on_err((-1), "Arg Error.\n"));
+    return (exit_on_err((-1), NULL, NULL, "Arg Error.\n"));
   if (needs_help(argc, argv))
     return 0;
-  fd = open(((argc == 3) ? argv[2] : argv[1]), O_RDONLY);
+  if ((fd = open(((argc == 3) ? argv[2] : argv[1]), O_RDONLY)) < 0)
+    return (exit_on_err(fd, NULL, NULL, "Could not open map.\n"));
+  p1 = map_create(fd, ((argc == 2) ? 1 : 2), 0);
+  p2 = map_create((-1), ((argc == 3) ? 1 : 2), 0);
+  if (p1 == NULL || p2 == NULL)
+    return (exit_on_err(fd, p1, p2, "Map format/creation failure\n"));
+  if (!signal_setup(p1->player_no == 1))
+    return (exit_on_err(fd, p1, p2, "Signal setup failure.\n"));
+  map_destroy(&p1);
+  map_destroy(&p2);
   close(fd);
-  return 0;
+  return (navy(p1, p2));
 }
