@@ -4,4 +4,6 @@
 *.o
 *.tmp
 a.out
+navy
+/include/my.h
 /map.txt
