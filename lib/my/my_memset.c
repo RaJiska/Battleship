@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Sat Oct 29 22:02:14 2016 Corlouer Doriann
-** Last update Sat Oct 29 23:48:13 2016 Corlouer Doriann
+** Last update Mon Jan 30 10:19:00 2017 Corlouer Doriann
 */
 
 void	my_memset(char *s, char c, int len)
@@ -13,7 +13,7 @@ void	my_memset(char *s, char c, int len)
   int	it;
 
   it = 0;
-  while (it <= len)
+  while (it < len)
     {
       *(s + it) = c;
       it++;
