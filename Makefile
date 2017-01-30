@@ -5,7 +5,7 @@
 ## Login   <corlouer_d@epitech.net>
 ## 
 ## Started on  Mon Jan 30 09:34:42 2017 Corlouer Doriann
-## Last update Mon Jan 30 15:49:36 2017 Corlouer Doriann
+## Last update Mon Jan 30 18:28:15 2017 Corlouer Doriann
 ##
 
 CC      =	gcc
@@ -28,6 +28,7 @@ SRC     =	src/main.c				\
 		src/wait_connection.c			\
 		src/signal/signal_setup.c		\
 		src/signal/signal_send.c		\
+		signal_msg_iscorrect.c			\
 		src/map/map_create.c			\
 		src/map/map_show.c                      \
 		src/map/map_pos_isvalid.c               \

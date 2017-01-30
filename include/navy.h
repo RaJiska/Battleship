@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Mon Jan 30 15:51:15 2017 Corlouer Doriann
+** Last update Mon Jan 30 18:28:33 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -21,8 +21,10 @@
 
 #define NAVY_VERSION	"1.0"
 #define NAVY_PLAYERNR	2
-#define NAVY_SIG_HIT	100
-#define	NAVY_SIG_MISS	200
+#define NAVY_SIG_MULT	100
+#define NAVY_SIG_ATCK	1
+#define NAVY_SIG_HIT	2
+#define	NAVY_SIG_MISS	3
 #define NAVY_MAP_H	8
 #define NAVY_MAP_W	8
 #define NAVY_SHIP_XS	2
@@ -45,11 +47,12 @@ typedef struct	s_2DVector
 
 int	g_sigvalue;
 
-int	navy(t_map *p1, t_map *p2);
+int	navy(t_map *p1, t_map *p2, pid_t pid);
 int	game_ended(const t_map *p1, const t_map *p2);
 void	wait_connection(pid_t *pid);
 int	signal_setup(int is_server);
 void	signal_send(pid_t pid, int count_usr1, int count_usr2);
+int	signal_msg_iscorrect(void);
 t_map	*map_create(const int fd, int player_no, pid_t pid);
 void	map_show(const t_map *map);
 int	map_pos_isvalid(const char *pos);

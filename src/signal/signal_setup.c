@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 14:22:03 2017 Corlouer Doriann
-** Last update Mon Jan 30 15:41:32 2017 Corlouer Doriann
+** Last update Mon Jan 30 17:39:29 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -16,7 +16,7 @@ static void	signal_handle(int signo, siginfo_t *info, void *cntx)
   if (signo == SIGUSR1)
     {
       if (g_sigvalue >= 0)
-	g_sigvalue += 100;
+	g_sigvalue += NAVY_SIG_MULT;
       else
 	g_sigvalue = info->si_pid;
     }

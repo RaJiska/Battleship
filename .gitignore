@@ -1,10 +1,11 @@
-#*#
-*~
+**/#*#
+**/*~
 *.a
 *.o
 *.tmp
 a.out
-navy
+/navy
 /include/my.h
 /include/get_next_line.h
 /map.txt
+/TODO
