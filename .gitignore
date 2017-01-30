@@ -6,4 +6,5 @@
 a.out
 navy
 /include/my.h
+/include/get_next_line.h
 /map.txt
