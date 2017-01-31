@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Tue Jan 31 11:17:35 2017 Corlouer Doriann
+** Last update Tue Jan 31 11:40:06 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -49,7 +49,7 @@ void	signal_send(pid_t pid, int count_usr1, int count_usr2);
 int	signal_msg_iscorrect(void);
 t_map	*map_create(const int fd, int player_no, pid_t pid);
 void	map_show(const t_map *map);
-int	map_pos_isvalid(const char *pos);
+int	map_pos_isvalid(char *pos);
 void	map_pos_toint(const char *coord, t_2DVector *pos);
 void	map_destroy(t_map **map);
 
