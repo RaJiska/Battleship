@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Tue Jan 31 19:27:01 2017 Corlouer Doriann
+** Last update Tue Jan 31 20:21:00 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -59,7 +59,7 @@ int	navy(t_map *p1, t_map *p2, pid_t pid)
   wait_connection(&p2->pid, pid);
   while (!(res = game_ended(p1, p2)))
     {
-      if (turn == 1)
+      if (turn == 1 || turn == 0)
 	print_maps(p1, p2);
       if (turn == p1->player_no)
 	send_input(p2->pid);
