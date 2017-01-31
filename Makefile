@@ -5,7 +5,7 @@
 ## Login   <corlouer_d@epitech.net>
 ## 
 ## Started on  Mon Jan 30 09:34:42 2017 Corlouer Doriann
-## Last update Tue Jan 31 18:51:46 2017 Corlouer Doriann
+## Last update Tue Jan 31 19:05:14 2017 Corlouer Doriann
 ##
 
 CC      =	gcc
@@ -28,6 +28,8 @@ SRC     =	src/main.c				\
 		src/wait_connection.c			\
 		src/print_maps.c			\
 		src/receive/receive_atck.c		\
+		src/receive/receive_hit.c		\
+		src/receive/receive_miss.c		\
 		src/signal/signal_setup.c		\
 		src/signal/signal_send.c		\
 		src/signal/signal_msg_iscorrect.c	\

@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Tue Jan 31 18:52:05 2017 Corlouer Doriann
+** Last update Tue Jan 31 19:07:41 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -16,6 +16,10 @@ static void	get_consequences(t_map *p1, t_map *p2)
     usleep(NAVY_MSG_DELAY);
   if ((g_sigvalue / NAVY_SIG_MAX) == NAVY_SIG_ATCK)
     receive_atck(p1, p2->pid);
+  else if ((g_sigvalue / NAVY_SIG_MAX) == NAVY_SIG_HIT)
+    receive_hit(p2);
+  else if ((g_sigvalue / NAVY_SIG_MAX) == NAVY_SIG_MISS)
+    receive_miss(p2);
   g_sigvalue = 0;
 }
 
@@ -61,7 +65,7 @@ int	navy(t_map *p1, t_map *p2, pid_t pid)
       else
 	my_putstr("waiting for enemy's attack...\n");
       get_consequences(p1, p2);
-      turn = ((turn == 1) ? 2 : 1);
+      turn = ((turn == 1 || turn == 0) ? 2 : 1);
     }
   return (end_game(res));
 }
