@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 14:22:03 2017 Corlouer Doriann
-** Last update Mon Jan 30 17:39:29 2017 Corlouer Doriann
+** Last update Tue Jan 31 18:41:47 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -14,24 +14,24 @@ static void	signal_handle(int signo, siginfo_t *info, void *cntx)
 {
   (void)cntx;
   if (signo == SIGUSR1)
-    {
-      if (g_sigvalue >= 0)
-	g_sigvalue += NAVY_SIG_MULT;
-      else
-	g_sigvalue = info->si_pid;
-    }
+    g_sigvalue *= 10;
   else if (signo == SIGUSR2)
-    g_sigvalue += 1;
+    {
+      if (g_sigvalue == (-1))
+	g_sigvalue = info->si_pid;
+      else
+	g_sigvalue += 1;
+    }
 }
 
-int			signal_setup(int is_server)
+int			signal_setup(void)
 {
   struct sigaction	sa;
 
-  g_sigvalue = ((is_server) ? (-1) : 0);
+  g_sigvalue = (-1);
   sigemptyset(&sa.sa_mask);
   sa.sa_sigaction = &signal_handle;
-  sa.sa_flags = SA_SIGINFO;
+  sa.sa_flags = SA_NODEFER | SA_SIGINFO;
   if (sigaction(SIGUSR1, &sa, NULL) == (-1))
     return FALSE;
   if (sigaction(SIGUSR2, &sa, NULL) == (-1))

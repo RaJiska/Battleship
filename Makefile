@@ -5,7 +5,7 @@
 ## Login   <corlouer_d@epitech.net>
 ## 
 ## Started on  Mon Jan 30 09:34:42 2017 Corlouer Doriann
-## Last update Mon Jan 30 20:27:34 2017 Corlouer Doriann
+## Last update Tue Jan 31 18:51:46 2017 Corlouer Doriann
 ##
 
 CC      =	gcc
@@ -26,6 +26,8 @@ SRC     =	src/main.c				\
 		src/navy.c				\
 		src/game_ended.c			\
 		src/wait_connection.c			\
+		src/print_maps.c			\
+		src/receive/receive_atck.c		\
 		src/signal/signal_setup.c		\
 		src/signal/signal_send.c		\
 		src/signal/signal_msg_iscorrect.c	\
@@ -33,6 +35,7 @@ SRC     =	src/main.c				\
 		src/map/map_show.c                      \
 		src/map/map_pos_isvalid.c               \
 		src/map/map_pos_toint.c                 \
+		src/map/map_int_topos.c			\
 		src/map/map_destroy.c
 
 OBJ     =       $(SRC:.c=.o)

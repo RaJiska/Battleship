@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Tue Jan 31 11:40:06 2017 Corlouer Doriann
+** Last update Tue Jan 31 18:51:36 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -21,16 +21,20 @@
 
 #define NAVY_VERSION	"1.0"
 #define NAVY_PLAYERNR	2
-#define NAVY_SIG_MULT	100
+#define NAVY_SIG_MIN	100
 #define NAVY_SIG_ATCK	1
 #define NAVY_SIG_HIT	2
 #define	NAVY_SIG_MISS	3
+#define NAVY_SIG_MAX	1000
 #define NAVY_MAP_H	8
 #define NAVY_MAP_W	8
 #define NAVY_SHIP_XS	2
 #define NAVY_SHIP_S	3
 #define NAVY_SHIP_M	4
 #define NAVY_SHIP_L	5
+#define NAVY_MSG_DELAY	10000
+#define	NAVY_MAP_HIT	'x'
+#define NAVY_MAP_MISS	'o'
 
 typedef struct	s_map
 {
@@ -43,14 +47,17 @@ int	g_sigvalue;
 
 int	navy(t_map *p1, t_map *p2, pid_t pid);
 int	game_ended(const t_map *p1, const t_map *p2);
-void	wait_connection(pid_t *pid);
-int	signal_setup(int is_server);
-void	signal_send(pid_t pid, int count_usr1, int count_usr2);
+void	wait_connection(pid_t *pid, pid_t role);
+void	print_maps(const t_map *p1, const t_map *p2);
+void	receive_atck(t_map *p1, pid_t sendback);
+int	signal_setup(void);
+void	signal_send(pid_t pid, int msg_type, t_2DVector *vec);
 int	signal_msg_iscorrect(void);
 t_map	*map_create(const int fd, int player_no, pid_t pid);
 void	map_show(const t_map *map);
 int	map_pos_isvalid(char *pos);
 void	map_pos_toint(const char *coord, t_2DVector *pos);
+void	map_int_topos(char *buffer, const t_2DVector *pos);
 void	map_destroy(t_map **map);
 
 #endif

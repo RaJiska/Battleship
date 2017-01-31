@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:38:07 2017 Corlouer Doriann
-** Last update Tue Jan 31 11:01:50 2017 Corlouer Doriann
+** Last update Tue Jan 31 18:41:27 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -59,9 +59,8 @@ int	main(int argc, char **argv)
   p2 = map_create((-1), ((argc == 3) ? 1 : 2), 0);
   if (p1 == NULL || p2 == NULL)
     return (exit_on_err(fd, p1, p2, "Map format/creation failure\n"));
-  if (!signal_setup(p1->player_no == 1))
+  if (!signal_setup())
     return (exit_on_err(fd, p1, p2, "Signal setup failure.\n"));
-  map_show(p1);
   ret = navy(p1, p2, ((argc == 3) ? my_getnbr(argv[1]) : (-1)));
   map_destroy(&p1);
   map_destroy(&p2);
