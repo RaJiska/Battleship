@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Oct 13 09:56:10 2016 Corlouer Doriann
-** Last update Sun Jan 22 15:18:45 2017 Corlouer Doriann
+** Last update Tue Jan 31 11:16:13 2017 Corlouer Doriann
 */
 
 #ifndef _MY_H
@@ -18,6 +18,12 @@
 #define ABS(x)		(((x) < 0) ? (x * (-1)) : (x))
 #define TRUE		1
 #define FALSE		0
+
+typedef struct	s_2DVector
+{
+  int		x;
+  int		y;
+}		t_2DVector;
 
 void	my_putchar(char c);
 void	my_putchar_err(char c);
@@ -78,5 +84,7 @@ char	*my_fetch_env(char **env, const char *var);
 void	my_str_replace(char *s, const char *from, const char *to);
 void	my_putnstr(const char *s, int sz);
 int	my_str_findchar(const char *s, char c);
+void	my_swap_void(void **a, void **b);
+void	my_swap_2dvec(t_2DVector *a, t_2DVector *b);
 
 #endif

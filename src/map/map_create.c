@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:54:28 2017 Corlouer Doriann
-** Last update Mon Jan 30 16:33:28 2017 Corlouer Doriann
+** Last update Tue Jan 31 11:17:59 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -61,6 +61,8 @@ static int	data_isvalid(char **wt, int *ships, t_2DVector *a, t_2DVector *b)
     }
   map_pos_toint(wt[1], a);
   map_pos_toint(wt[2], b);
+  if ((a->x + a->y) > (b->x + b->y))
+    my_swap_2dvec(a, b);
   if (((b->x + b->y) - (a->x + a->y) + 1) != (wt[0][0] - 48))
     {
       my_wordtab_free(wt);

@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Mon Jan 30 18:28:33 2017 Corlouer Doriann
+** Last update Tue Jan 31 11:17:35 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -38,12 +38,6 @@ typedef struct	s_map
   int		player_no;
   char		**map;
 }		t_map;
-
-typedef struct	s_2DVector
-{
-  int		x;
-  int		y;
-}		t_2DVector;
 
 int	g_sigvalue;
 

@@ -5,7 +5,7 @@
 ## Login   <corlouer_d@epitech.net>
 ## 
 ## Started on  Fri Oct 14 10:26:38 2016 Corlouer Doriann
-## Last update Sun Jan 22 15:18:57 2017 Corlouer Doriann
+## Last update Tue Jan 31 11:15:29 2017 Corlouer Doriann
 ##
 
 CC	=	gcc
@@ -76,7 +76,9 @@ SRC	=	my_find_prime_sup.c		\
 		my_str_replace.c		\
 		my_putnstr.c			\
 		my_str_findchar.c		\
-		my_realloc_clean.c
+		my_realloc_clean.c		\
+		my_swap_void.c			\
+		my_swap_2dvec.c
 
 OBJ	=	$(SRC:.c=.o)
 
