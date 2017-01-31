@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:54:28 2017 Corlouer Doriann
-** Last update Tue Jan 31 11:17:59 2017 Corlouer Doriann
+** Last update Tue Jan 31 19:32:56 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -28,7 +28,7 @@ static void	draw_ship(t_map **map, int nb,
   j = a->y;
   while ((i != b->x) || (j != b->y))
     {
-      if ((*map)->map[j][i] != '.')
+      if ((*map)->map[j][i] != NAVY_MAP_VOID)
 	{
 	  map_destroy(map);
 	  return;
@@ -39,7 +39,7 @@ static void	draw_ship(t_map **map, int nb,
       else
 	i++;
     }
-  if ((*map)->map[j][i] != '.')
+  if ((*map)->map[j][i] != NAVY_MAP_VOID)
     {
       map_destroy(map);
       return;
