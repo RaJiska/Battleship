@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Tue Jan 31 15:02:16 2017 Corlouer Doriann
-** Last update Tue Jan 31 19:32:10 2017 Corlouer Doriann
+** Last update Wed Feb  1 18:26:11 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -21,7 +21,8 @@ void		receive_atck(t_map *p1, pid_t sendback)
   pos.x = g_sigvalue % 10;
   map_int_topos(&buffer[0], &pos);
   if (p1->map[pos.y][pos.x] != NAVY_MAP_VOID &&
-      p1->map[pos.y][pos.x] != NAVY_MAP_MISS)
+      p1->map[pos.y][pos.x] != NAVY_MAP_MISS &&
+      p1->map[pos.y][pos.x] != NAVY_MAP_HIT)
     {
       signal_send(sendback, NAVY_SIG_HIT, &pos);
       p1->map[pos.y][pos.x] = NAVY_MAP_HIT;
