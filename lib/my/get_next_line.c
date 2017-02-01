@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan  2 12:46:15 2017 Corlouer Doriann
-** Last update Tue Jan 31 14:25:42 2017 Corlouer Doriann
+** Last update Wed Feb  1 13:17:55 2017 Corlouer Doriann
 */
 
 #include "get_next_line.h"
@@ -90,11 +90,12 @@ char			*get_next_line(const int fd)
     return stack_to_s(&stack, fd);
   while (((stack.bf_rd = read(fd, &buffer[0], READ_SIZE))) > 0)
     {
-      stack.stack = l_realloc(stack.stack, stack.size + stack.bf_rd + 2);
+      stack.stack = l_realloc(stack.stack, stack.size + stack.bf_rd + 3);
       it = (-1);
       stck_sz_bk = stack.size;
       while (stack.size <=
-	     (stack.bf_rd + stck_sz_bk + ((stack.bf_rd < READ_SIZE) ? -1 : 0)))
+	     (stack.bf_rd + stck_sz_bk + ((stack.bf_rd < READ_SIZE &&
+					   buffer[stack.bf_rd - 1] == '\n') ? -1 : 0)))
 	stack.stack[stack.size++] = buffer[++it];
       stack.stack[--stack.size] = '\0';
       if ((stack.stack != NULL &&
