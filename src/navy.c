@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Tue Jan 31 20:21:00 2017 Corlouer Doriann
+** Last update Wed Feb  1 19:34:25 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -45,7 +45,7 @@ static int	end_game(int end_val)
   if (end_val == 1)
     my_putstr("I won\n");
   else if (end_val == 2)
-    my_putstr("Ennemy won\n");
+    my_putstr("Enemy won\n");
   return (end_val - 1);
 }
 
@@ -68,7 +68,6 @@ int	navy(t_map *p1, t_map *p2, pid_t pid)
       get_consequences(p1, p2);
       turn = ((turn == 1 || turn == 0) ? 2 : 1);
     }
-  my_putchar('\n');
   print_maps(p1, p2);
   return (end_game(res));
 }
