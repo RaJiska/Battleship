@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Thu Feb  2 15:51:35 2017 Corlouer Doriann
+** Last update Thu Feb  2 17:06:04 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -41,6 +41,9 @@
 #define NAVY_MAP_VOID	'.'
 #define	NAVY_MAP_HIT	'x'
 #define NAVY_MAP_MISS	'o'
+#define	NAVY_NET_RFRSH	50000
+#define	NAVY_NET_MXSZ	128
+#define NAVY_NET_PORT	1111
 
 typedef struct sockaddr_in t_sockaddr;
 
@@ -62,15 +65,17 @@ typedef struct	s_network
 
 int	g_sigvalue;
 
-int	navy(t_map *p1, t_map *p2, pid_t pid);
+int	navy(t_map *p1, t_map *p2, const char *addr, int port);
 int	game_ended(const t_map *p1, const t_map *p2);
-void	wait_connection(pid_t *pid, pid_t role);
+int	wait_connection(int pno, t_network *net, const char *addr, int port);
 void	print_maps(const t_map *p1, const t_map *p2);
 void	receive_atck(t_map *p1, pid_t sendback);
 void	receive_hit(t_map *p2);
 void	receive_miss(t_map *p2);
-int	network_srv_listen(t_network *net, int port);
+int	network_srv_accept(t_network *net, int port);
+int	network_cli_connect(t_network *net, const char *addr, int port);
 int	network_send(int sck, int msg_type, char *msg);
+char	*network_receive(int sck);
 int	signal_setup(void);
 void	signal_send(pid_t pid, int msg_type, t_2DVector *vec);
 int	signal_msg_iscorrect(void);

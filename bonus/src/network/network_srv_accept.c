@@ -1,16 +1,16 @@
 /*
-** network_srv_listen.c for navy in /home/PSU_2016_navy/bonus/src/network
+** network_srv_accept.c for navy in /home/PSU_2016_navy/bonus/src/network
 ** 
 ** Made by Corlouer Doriann
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Feb  2 14:32:48 2017 Corlouer Doriann
-** Last update Thu Feb  2 15:33:03 2017 Corlouer Doriann
+** Last update Thu Feb  2 16:03:42 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
 
-int	network_srv_listen(t_network *net, int port)
+int	network_srv_accept(t_network *net, int port)
 {
   net->sck_sz = sizeof(t_sockaddr);
   memset(&net->srv, 0, sizeof(t_sockaddr));

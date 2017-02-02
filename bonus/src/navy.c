@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Wed Feb  1 19:34:25 2017 Corlouer Doriann
+** Last update Thu Feb  2 17:05:27 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -49,14 +49,16 @@ static int	end_game(int end_val)
   return (end_val - 1);
 }
 
-int	navy(t_map *p1, t_map *p2, pid_t pid)
+int		navy(t_map *p1, t_map *p2, const char *addr, int port)
 {
-  int	res;
-  char	turn;
+  int		res;
+  char		turn;
+  t_network	net;
 
   turn = ((p1->player_no == 1) ? 1 : 0);
   my_printf("my_pid: %d\n", getpid());
-  wait_connection(&p2->pid, pid);
+  if (wait_connection(p1->player_no, &net, addr, port) != 0)
+    return 84;
   while (!(res = game_ended(p1, p2)))
     {
       if (turn == 1 || turn == 0)
