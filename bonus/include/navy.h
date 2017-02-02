@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Thu Feb  2 17:06:04 2017 Corlouer Doriann
+** Last update Thu Feb  2 18:15:21 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -22,6 +22,7 @@
 #include <signal.h>
 #include <string.h>
 #include <stdio.h>
+#include <errno.h>
 #include "my.h"
 
 #define NAVY_VERSION	"1.0"
@@ -74,7 +75,7 @@ void	receive_hit(t_map *p2);
 void	receive_miss(t_map *p2);
 int	network_srv_accept(t_network *net, int port);
 int	network_cli_connect(t_network *net, const char *addr, int port);
-int	network_send(int sck, int msg_type, char *msg);
+int	network_send(int sck, int msg_type, const t_2DVector *vec);
 char	*network_receive(int sck);
 int	signal_setup(void);
 void	signal_send(pid_t pid, int msg_type, t_2DVector *vec);

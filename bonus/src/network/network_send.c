@@ -5,27 +5,34 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Feb  2 15:37:32 2017 Corlouer Doriann
-** Last update Thu Feb  2 16:06:55 2017 Corlouer Doriann
+** Last update Thu Feb  2 18:25:10 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
 
-int	network_send(int sck, int msg_type, char *msg)
+static void	assemble_msg(char *buf, int msg_type, const t_2DVector *vec)
 {
-  char	*to_send;
-  char	buffer[12];
+  char		buffer[11];
+
+  my_itoa(msg_type, buf);
+  buf[strlen(buf)] = '|';
+  memset(&buffer[0], 0, 11);
+  my_itoa(vec->x, &buffer[0]);
+  strcat(buf, &buffer[0]);
+  memset(&buffer[0], 0, 11);
+  my_itoa(vec->y, &buffer[0]);
+  strcat(buf, &buffer[0]);
+}
+
+int	network_send(int sck, int msg_type, const t_2DVector *vec)
+{
+  char	buffer[32];
   int	len;
 
-  memset(&buffer[0], 0, 15);
-  my_itoa(msg_type, &buffer[0]);
-  buffer[strlen(&buffer[0])] = '|';
-  len = strlen(msg) + strlen(&buffer[0]);
-  to_send = malloc(sizeof(char) * (len + 1));
-  if (send(sck, to_send, len, 0) < 0)
-    {
-      free(to_send);
-      return FALSE;
-    }
-  free(to_send);
+  assemble_msg(&buffer[0], msg_type, vec);
+  memset(&buffer[0], 0, 31);
+  len = strlen(buffer);
+  if (send(sck, &buffer[0], len, 0) < 0)
+    return FALSE;
   return TRUE;
 }

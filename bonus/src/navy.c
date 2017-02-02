@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Thu Feb  2 17:05:27 2017 Corlouer Doriann
+** Last update Thu Feb  2 18:12:37 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -23,7 +23,7 @@ static void	get_consequences(t_map *p1, t_map *p2)
   g_sigvalue = 0;
 }
 
-static void	send_input(pid_t pid)
+static void	send_input(int sck)
 {
   char		*line;
   t_2DVector	pos;
@@ -36,7 +36,7 @@ static void	send_input(pid_t pid)
       free(line);
     }
   map_pos_toint(line, &pos);
-  signal_send(pid, NAVY_SIG_ATCK, &pos);
+  network_send(sck, NAVY_SIG_ATCK, &pos);
   free(line);
 }
 
@@ -57,14 +57,14 @@ int		navy(t_map *p1, t_map *p2, const char *addr, int port)
 
   turn = ((p1->player_no == 1) ? 1 : 0);
   my_printf("my_pid: %d\n", getpid());
-  if (wait_connection(p1->player_no, &net, addr, port) != 0)
+  if (!wait_connection(p1->player_no, &net, addr, port))
     return 84;
   while (!(res = game_ended(p1, p2)))
     {
       if (turn == 1 || turn == 0)
 	print_maps(p1, p2);
       if (turn == p1->player_no)
-	send_input(p2->pid);
+	send_input(((p1->player_no == 1) ? net.cli_sck : net.srv_sck));
       else
 	my_putstr("waiting for enemy's attack...\n");
       get_consequences(p1, p2);
