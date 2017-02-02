@@ -5,7 +5,7 @@
 ## Login   <corlouer_d@epitech.net>
 ## 
 ## Started on  Mon Jan 30 09:34:42 2017 Corlouer Doriann
-## Last update Thu Feb  2 15:51:22 2017 Corlouer Doriann
+## Last update Thu Feb  2 15:56:40 2017 Corlouer Doriann
 ##
 
 CC      =	gcc
@@ -19,7 +19,7 @@ CFLAGS  +=	-Wundef -Wlogical-op -Winline -Wdouble-promotion
 
 LFLAGS  =	-L../lib/my -lmy
 
-NAME    =	navy
+NAME    =	navy_b
 
 RM      =	rm -f
 

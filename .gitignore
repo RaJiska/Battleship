@@ -5,9 +5,16 @@
 *.tmp
 a.out
 /navy
+/bonus/navy_b
 /include/my.h
 /include/get_next_line.h
+/bonus/include/my.h
+/bonus/include/get_next_line.h
 /map.txt
+/bonus/map.txt
 /pos1
+/bonus/pos1
 /pos2
+/bonus/pos2
 /TODO
+/bonus/TODO
