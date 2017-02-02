@@ -5,22 +5,25 @@
 ## Login   <corlouer_d@epitech.net>
 ## 
 ## Started on  Mon Jan 30 09:34:42 2017 Corlouer Doriann
-## Last update Thu Feb  2 14:07:42 2017 Corlouer Doriann
+## Last update Thu Feb  2 15:51:22 2017 Corlouer Doriann
 ##
 
 CC      =	gcc
 
-CFLAGS  =	-pedantic -ggdb -Wall -Wextra -Wfloat-equal
+CFLAGS	=	-I../
+CFLAGS  +=	-pedantic -ggdb -Wall -Wextra -Wfloat-equal
 CFLAGS  +=	-DDEBUG -Wwrite-strings -Wpointer-arith
 CFLAGS  +=	-Wcast-align -Wshadow -Wredundant-decls
 CFLAGS  +=	-Winit-self -Wswitch-default -Wswitch-enum
 CFLAGS  +=	-Wundef -Wlogical-op -Winline -Wdouble-promotion
 
-LFLAGS  =	-Llib/my -lmy
+LFLAGS  =	-L../lib/my -lmy
 
 NAME    =	navy
 
 RM      =	rm -f
+
+CP	=	cp -p
 
 SRC     =	src/main.c				\
 		src/navy.c				\
@@ -30,6 +33,8 @@ SRC     =	src/main.c				\
 		src/receive/receive_atck.c		\
 		src/receive/receive_hit.c		\
 		src/receive/receive_miss.c		\
+		src/network/network_srv_listen.c	\
+		src/network/network_send.c		\
 		src/signal/signal_setup.c		\
 		src/signal/signal_send.c		\
 		src/signal/signal_msg_iscorrect.c	\
@@ -42,28 +47,19 @@ SRC     =	src/main.c				\
 
 OBJ     =       $(SRC:.c=.o)
 
-all:	libs $(NAME) bonus
+all:	$(NAME)
 
-libs:
-	$(MAKE) -C lib/my all
 
 $(NAME):	$(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LFLAGS)
 
-bonus:
-	$(MAKE) -C bonus all
-
 clean:
-	$(MAKE) -C lib/my clean
-	$(MAKE) -C bonus clean
 	$(RM) $(OBJ)
 
 fclean:
-	$(MAKE) -C lib/my fclean
-	$(MAKE) -C bonus fclean
 	$(RM) $(OBJ)
 	$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY: all $(NAME) libs clean fclean re bonus
+.PHONY:	all $(NAME) clean fclean re
