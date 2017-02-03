@@ -5,32 +5,30 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Tue Jan 31 15:02:16 2017 Corlouer Doriann
-** Last update Wed Feb  1 18:26:11 2017 Corlouer Doriann
+** Last update Fri Feb  3 10:42:51 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
 
-void		receive_atck(t_map *p1, pid_t sendback)
+void		receive_atck(const char *msg, t_map *p1, int sendback)
 {
   t_2DVector	pos;
   char		buffer[13];
 
-  g_sigvalue /= 10;
-  pos.y = g_sigvalue % 10;
-  g_sigvalue /= 10;
-  pos.x = g_sigvalue % 10;
+  pos.y = msg[2];
+  pos.x = msg[1];
   map_int_topos(&buffer[0], &pos);
   if (p1->map[pos.y][pos.x] != NAVY_MAP_VOID &&
       p1->map[pos.y][pos.x] != NAVY_MAP_MISS &&
       p1->map[pos.y][pos.x] != NAVY_MAP_HIT)
     {
-      signal_send(sendback, NAVY_SIG_HIT, &pos);
+      network_send(sendback, NAVY_SIG_HIT, &pos);
       p1->map[pos.y][pos.x] = NAVY_MAP_HIT;
       my_strcpy(&buffer[2], ": hit\n\n");
     }
   else
     {
-      signal_send(sendback, NAVY_SIG_MISS, &pos);
+      network_send(sendback, NAVY_SIG_MISS, &pos);
       p1->map[pos.y][pos.x] = NAVY_MAP_MISS;
       my_strcpy(&buffer[2], ": missed\n\n");
     }

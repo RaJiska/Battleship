@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:38:07 2017 Corlouer Doriann
-** Last update Thu Feb  2 17:03:19 2017 Corlouer Doriann
+** Last update Fri Feb  3 10:47:52 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -56,8 +56,8 @@ int	main(int argc, char **argv)
     return 0;
   if ((fd = open(((argc == 3) ? argv[2] : argv[1]), O_RDONLY)) < 0)
     return (exit_on_err(fd, NULL, NULL, "Could not open map.\n"));
-  p1 = map_create(fd, ((argc == 2) ? 1 : 2), 0);
-  p2 = map_create((-1), ((argc == 3) ? 1 : 2), 0);
+  p1 = map_create(fd, ((argc == 2) ? 1 : 2));
+  p2 = map_create((-1), ((argc == 3) ? 1 : 2));
   if (p1 == NULL || p2 == NULL)
     return (exit_on_err(fd, p1, p2, "Map format/creation failure\n"));
   wt = my_strsplit(argv[1], ":");

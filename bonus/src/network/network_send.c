@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Feb  2 15:37:32 2017 Corlouer Doriann
-** Last update Thu Feb  2 18:25:10 2017 Corlouer Doriann
+** Last update Fri Feb  3 10:41:26 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -15,7 +15,6 @@ static void	assemble_msg(char *buf, int msg_type, const t_2DVector *vec)
   char		buffer[11];
 
   my_itoa(msg_type, buf);
-  buf[strlen(buf)] = '|';
   memset(&buffer[0], 0, 11);
   my_itoa(vec->x, &buffer[0]);
   strcat(buf, &buffer[0]);

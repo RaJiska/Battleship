@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:54:28 2017 Corlouer Doriann
-** Last update Wed Feb  1 13:19:06 2017 Corlouer Doriann
+** Last update Fri Feb  3 10:47:08 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -101,7 +101,7 @@ static void	place_ships(t_map **map, const int fd)
     return;
 }
 
-t_map	*map_create(const int fd, int player_no, pid_t pid)
+t_map	*map_create(const int fd, int player_no)
 {
   t_map	*map;
   int	it;
@@ -116,7 +116,6 @@ t_map	*map_create(const int fd, int player_no, pid_t pid)
       map->map[it][NAVY_MAP_W] = '\0';
       it++;
     }
-  map->pid = ((fd < 0) ? pid : getpid());
   map->player_no = player_no;
   if (fd >= 0)
     place_ships(&map, fd);

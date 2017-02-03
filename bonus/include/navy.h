@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Thu Feb  2 18:15:21 2017 Corlouer Doriann
+** Last update Fri Feb  3 11:16:54 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -50,7 +50,7 @@ typedef struct sockaddr_in t_sockaddr;
 
 typedef struct	s_map
 {
-  pid_t		pid;
+  int		sck;
   int		player_no;
   char		**map;
 }		t_map;
@@ -62,6 +62,7 @@ typedef struct	s_network
   socklen_t	sck_sz;
   int		srv_sck;
   int		cli_sck;
+  int		active_sck;
 }		t_network;
 
 int	g_sigvalue;
@@ -70,9 +71,9 @@ int	navy(t_map *p1, t_map *p2, const char *addr, int port);
 int	game_ended(const t_map *p1, const t_map *p2);
 int	wait_connection(int pno, t_network *net, const char *addr, int port);
 void	print_maps(const t_map *p1, const t_map *p2);
-void	receive_atck(t_map *p1, pid_t sendback);
-void	receive_hit(t_map *p2);
-void	receive_miss(t_map *p2);
+void	receive_atck(const char *msg, t_map *p1, pid_t sendback);
+void	receive_hit(const char *msg, t_map *p2);
+void	receive_miss(const char *msg, t_map *p2);
 int	network_srv_accept(t_network *net, int port);
 int	network_cli_connect(t_network *net, const char *addr, int port);
 int	network_send(int sck, int msg_type, const t_2DVector *vec);
@@ -80,7 +81,7 @@ char	*network_receive(int sck);
 int	signal_setup(void);
 void	signal_send(pid_t pid, int msg_type, t_2DVector *vec);
 int	signal_msg_iscorrect(void);
-t_map	*map_create(const int fd, int player_no, pid_t pid);
+t_map	*map_create(const int fd, int player_no);
 void	map_show(const t_map *map);
 int	map_pos_isvalid(char *pos);
 void	map_pos_toint(const char *coord, t_2DVector *pos);
