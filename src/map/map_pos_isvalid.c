@@ -5,14 +5,18 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 10:00:47 2017 Corlouer Doriann
-** Last update Tue Jan 31 20:19:47 2017 Corlouer Doriann
+** Last update Fri Feb  3 22:58:02 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
 
 int	map_pos_isvalid(char *pos)
 {
-  if (my_strlen(pos) != 2)
+  if (my_strlen(pos) < 2)
+    return FALSE;
+  my_str_stripchar(pos + (sizeof(char) * 2), ' ');
+  my_str_stripchar(pos + (sizeof(char) * 2), '\t');
+  if (my_strlen(pos) < 2)
     return FALSE;
   if ((pos[0] >= '1' && pos[0] <= '8') &&
       (pos[1] >= 'A' && pos[1] <= (('A') + NAVY_MAP_W - 1)))
