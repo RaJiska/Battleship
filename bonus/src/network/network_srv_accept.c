@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Feb  2 14:32:48 2017 Corlouer Doriann
-** Last update Fri Feb  3 11:15:50 2017 Corlouer Doriann
+** Last update Fri Feb  3 11:20:22 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -39,6 +39,5 @@ int	network_srv_accept(t_network *net, int port)
     printf("Client connected with address %s\n", inet_ntoa(net->cli.sin_addr));
   else
     return (exit_on_err("Network Error"));
-  net->active_sck = net->cli_sck;
   return TRUE;
 }

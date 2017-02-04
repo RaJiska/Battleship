@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Feb  2 15:37:32 2017 Corlouer Doriann
-** Last update Fri Feb  3 10:41:26 2017 Corlouer Doriann
+** Last update Sat Feb  4 16:08:57 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -28,8 +28,8 @@ int	network_send(int sck, int msg_type, const t_2DVector *vec)
   char	buffer[32];
   int	len;
 
-  assemble_msg(&buffer[0], msg_type, vec);
   memset(&buffer[0], 0, 31);
+  assemble_msg(&buffer[0], msg_type, vec);
   len = strlen(buffer);
   if (send(sck, &buffer[0], len, 0) < 0)
     return FALSE;

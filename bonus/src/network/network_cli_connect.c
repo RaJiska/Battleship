@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Feb  2 16:09:20 2017 Corlouer Doriann
-** Last update Fri Feb  3 11:17:26 2017 Corlouer Doriann
+** Last update Sat Feb  4 15:39:44 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -23,13 +23,12 @@ int	network_cli_connect(t_network *net, const char *addr, int port)
   memset(&net->srv, 0, sizeof(t_sockaddr));
   net->srv.sin_family = AF_INET;
   net->srv.sin_port = htons(port);
-  net->cli_sck = socket(AF_INET, SOCK_STREAM, 0);
+  net->srv_sck = socket(AF_INET, SOCK_STREAM, 0);
   if (inet_pton(AF_INET, addr, &net->srv.sin_addr) <= 0)
     return (exit_on_err("Network Error"));
-  if (connect(net->cli_sck,
+  if (connect(net->srv_sck,
 	      (struct sockaddr *)&net->srv,
 	      sizeof(t_sockaddr)) < 0)
     return (exit_on_err("Network Error"));
-  net->active_sck = net->cli_sck;
   return TRUE;
 }

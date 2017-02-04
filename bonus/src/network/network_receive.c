@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Feb  2 16:07:22 2017 Corlouer Doriann
-** Last update Fri Feb  3 10:53:50 2017 Corlouer Doriann
+** Last update Sat Feb  4 16:09:04 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -19,5 +19,5 @@ char	*network_receive(int sck)
   if ((len = recv(sck, &buffer[0], NAVY_NET_MXSZ, 0)) < 0)
     return NULL;
   buffer[len] = 0;
-  return NULL;
+  return buffer;
 }

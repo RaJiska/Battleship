@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Fri Feb  3 11:17:09 2017 Corlouer Doriann
+** Last update Sat Feb  4 16:06:10 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -19,11 +19,11 @@ static void	get_consequences(t_map *p1, t_map *p2)
       printf("Err Rcv: '%s'\n", strerror(errno));
       return;
     }
-  if ((msg[0] + 48) == NAVY_SIG_ATCK)
+  if ((msg[0] - 48) == NAVY_SIG_ATCK)
     receive_atck(msg, p1, p1->sck);
-  else if ((msg[1] + 48) == NAVY_SIG_HIT)
+  else if ((msg[1] - 48) == NAVY_SIG_HIT)
     receive_hit(msg, p2);
-  else if ((msg[2] + 48) == NAVY_SIG_MISS)
+  else if ((msg[2] - 48) == NAVY_SIG_MISS)
     receive_miss(msg, p2);
   free(msg);
 }
@@ -64,19 +64,18 @@ int		navy(t_map *p1, t_map *p2, const char *addr, int port)
   my_printf("my_pid: %d\n", getpid());
   if (!wait_connection(p1->player_no, &net, addr, port))
     return 84;
-  p1->sck = net.active_sck;
-  p2->sck = net.active_sck;
+  p1->sck = ((p1->player_no == 1) ? net.cli_sck : net.srv_sck);
+  p2->sck = ((p2->player_no == 1) ? net.cli_sck : net.srv_sck);
   while (!(res = game_ended(p1, p2)))
     {
+      printf("TURN: %d\n", turn);
       if (turn == 1 || turn == 0)
 	print_maps(p1, p2);
       if (turn == p1->player_no)
 	send_input(p1->sck);
       else
-	{
-	  my_putstr("waiting for enemy's attack...\n");
-	  get_consequences(p1, p2);
-	}
+	my_putstr("waiting for enemy's attack...\n");
+      get_consequences(p1, p2);
       turn = ((turn == 1 || turn == 0) ? 2 : 1);
     }
   print_maps(p1, p2);
