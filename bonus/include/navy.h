@@ -5,28 +5,29 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Fri Feb  3 11:16:54 2017 Corlouer Doriann
+** Last update Sat Feb  4 21:56:34 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
 # define NAVY_H_
 
-#include <sys/types.h>
-#include <sys/stat.h>
+# ifdef NAVY_WINDOWS
+#include <windows.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
+# else
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <netinet/in.h>
+# endif
 #include <fcntl.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <signal.h>
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
 #include "my.h"
 
 #define NAVY_VERSION	"1.0"
-#define NAVY_PLAYERNR	2
 #define NAVY_SIG_MIN	100
 #define NAVY_SIG_ATCK	1
 #define NAVY_SIG_HIT	2
@@ -64,8 +65,6 @@ typedef struct	s_network
   int		cli_sck;
   int		active_sck;
 }		t_network;
-
-int	g_sigvalue;
 
 int	navy(t_map *p1, t_map *p2, const char *addr, int port);
 int	game_ended(const t_map *p1, const t_map *p2);
