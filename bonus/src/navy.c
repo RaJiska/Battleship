@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Sat Feb  4 16:24:18 2017 Corlouer Doriann
+** Last update Sat Feb  4 16:51:27 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -21,9 +21,9 @@ static void	get_consequences(t_map *p1, t_map *p2)
     }
   if ((msg[0] - 48) == NAVY_SIG_ATCK)
     receive_atck(msg, p1, p1->sck);
-  else if ((msg[1] - 48) == NAVY_SIG_HIT)
+  else if ((msg[0] - 48) == NAVY_SIG_HIT)
     receive_hit(msg, p2);
-  else if ((msg[2] - 48) == NAVY_SIG_MISS)
+  else if ((msg[0] - 48) == NAVY_SIG_MISS)
     receive_miss(msg, p2);
   free(msg);
 }

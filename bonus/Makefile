@@ -5,13 +5,13 @@
 ## Login   <corlouer_d@epitech.net>
 ## 
 ## Started on  Mon Jan 30 09:34:42 2017 Corlouer Doriann
-## Last update Thu Feb  2 16:30:11 2017 Corlouer Doriann
+## Last update Sat Feb  4 21:01:27 2017 Corlouer Doriann
 ##
 
 CC      =	gcc
 
 CFLAGS	=	-I../
-CFLAGS  +=	-pedantic -ggdb -Wall -Wextra -Wfloat-equal
+CFLAGS  +=	-ansi -pedantic -ggdb -Wall -Wextra -Wfloat-equal
 CFLAGS  +=	-DDEBUG -Wwrite-strings -Wpointer-arith
 CFLAGS  +=	-Wcast-align -Wshadow -Wredundant-decls
 CFLAGS  +=	-Winit-self -Wswitch-default -Wswitch-enum
@@ -19,7 +19,7 @@ CFLAGS  +=	-Wundef -Wlogical-op -Winline -Wdouble-promotion
 
 LFLAGS  =	-L../lib/my -lmy
 
-NAME    =	navy_b
+NAME    =	navy
 
 RM      =	rm -f
 
@@ -37,9 +37,6 @@ SRC     =	src/main.c				\
 		src/network/network_cli_connect.c	\
 		src/network/network_send.c		\
 		src/network/network_receive.c		\
-		src/signal/signal_setup.c		\
-		src/signal/signal_send.c		\
-		src/signal/signal_msg_iscorrect.c	\
 		src/map/map_create.c			\
 		src/map/map_show.c                      \
 		src/map/map_pos_isvalid.c               \

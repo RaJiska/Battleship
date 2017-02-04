@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Feb  2 16:09:20 2017 Corlouer Doriann
-** Last update Sat Feb  4 15:39:44 2017 Corlouer Doriann
+** Last update Sat Feb  4 16:46:14 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -15,6 +15,7 @@ static int	exit_on_err(const char *title)
   my_putstr_err(title);
   my_putstr_err(": ");
   my_putstr_err(strerror(errno));
+  my_putchar('\n');
   return FALSE;
 }
 

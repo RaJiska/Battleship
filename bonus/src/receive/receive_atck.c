@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Tue Jan 31 15:02:16 2017 Corlouer Doriann
-** Last update Sat Feb  4 16:24:39 2017 Corlouer Doriann
+** Last update Sat Feb  4 21:00:33 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -29,7 +29,8 @@ void		receive_atck(const char *msg, t_map *p1, int sendback)
   else
     {
       network_send(sendback, NAVY_SIG_MISS, &pos);
-      p1->map[pos.y][pos.x] = NAVY_MAP_MISS;
+      if (p1->map[pos.y][pos.x] != NAVY_MAP_HIT)
+	p1->map[pos.y][pos.x] = NAVY_MAP_MISS;
       my_strcpy(&buffer[2], ": missed\n\n");
     }
   my_putstr(&buffer[0]);
