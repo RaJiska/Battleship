@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Sat Feb  4 16:06:10 2017 Corlouer Doriann
+** Last update Sat Feb  4 16:24:18 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -68,7 +68,6 @@ int		navy(t_map *p1, t_map *p2, const char *addr, int port)
   p2->sck = ((p2->player_no == 1) ? net.cli_sck : net.srv_sck);
   while (!(res = game_ended(p1, p2)))
     {
-      printf("TURN: %d\n", turn);
       if (turn == 1 || turn == 0)
 	print_maps(p1, p2);
       if (turn == p1->player_no)
