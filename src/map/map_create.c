@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:54:28 2017 Corlouer Doriann
-** Last update Wed Feb  1 13:19:06 2017 Corlouer Doriann
+** Last update Sun Feb  5 17:34:55 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -98,7 +98,7 @@ static void	place_ships(t_map **map, const int fd)
     }
   if (ships[0] != TRUE || ships[1] != TRUE ||
       ships[2] != TRUE || ships[3] != TRUE)
-    return;
+    map_destroy(map);
 }
 
 t_map	*map_create(const int fd, int player_no, pid_t pid)
