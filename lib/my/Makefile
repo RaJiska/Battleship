@@ -5,7 +5,7 @@
 ## Login   <corlouer_d@epitech.net>
 ## 
 ## Started on  Fri Oct 14 10:26:38 2016 Corlouer Doriann
-## Last update Tue Jan 31 11:15:29 2017 Corlouer Doriann
+## Last update Sat Feb  4 22:22:52 2017 Corlouer Doriann
 ##
 
 CC	=	gcc
@@ -82,28 +82,34 @@ SRC	=	my_find_prime_sup.c		\
 
 OBJ	=	$(SRC:.c=.o)
 
-RM	=	rm -f
+ifeq ($(OS), Windows_NT)
+  RM	=	del /f /Q
+  CP	=	copy /Y
+  SLASH	=	\\
+else
+  RM	=	rm -f
+  CP	=	cp
+  SLASH	=	/
+endif
 
 RMDIR	=	rmdir
-
-CP	=	cp
 
 all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	ar rvs $(NAME) $(OBJ)
-	$(CP) my.h ../../include/
-	$(CP) get_next_line.h ../../include
-	$(CP) $(NAME) ../
+	$(CP) my.h ..$(SLASH)..$(SLASH)include$(SLASH)
+	$(CP) get_next_line.h ..$(SLASH)..$(SLASH)include
+	$(CP) $(NAME) ..$(SLASH)
 
 clean:
 	$(RM) $(OBJ)
 
 fclean:	clean
 	$(RM) $(NAME)
-	$(RM) ../$(NAME)
-	$(RM) ../../include/my.h
-	$(RM) ../../include/get_next_line.h
+	$(RM) ..$(SLASH)$(NAME)
+	$(RM) ..$(SLASH)..$(SLASH)include$(SLASH)my.h
+	$(RM) ..$(SLASH)..$(SLASH)include$(SLASH)get_next_line.h
 
 re:	fclean all
 

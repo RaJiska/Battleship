@@ -12,8 +12,9 @@
 # define NAVY_H_
 
 # ifdef EPITECH_WINDOWS
-#include <windows.h>
+#define WIN32_LEAN_AND_MEAN
 #include <winsock2.h>
+#include <windows.h>
 #include <ws2tcpip.h>
 # else
 #include <sys/socket.h>
@@ -66,13 +67,14 @@ typedef struct	s_network
   int		cli_sck;
 }		t_network;
 # else
-typedef struct addrinfo	t_addrinfo;
+typedef struct sockaddr_in	t_sockaddr;
 
 typedef struct	s_network
 {
-  WSADATA	*wsadata;
-  t_addrinfo	srv;
-  t_addrinfo	cli;
+  WSADATA	wsadata;
+  t_sockaddr	srv;
+  t_sockaddr	cli;
+	socklen_t	sck_sz;
   SOCKET	srv_sck;
   SOCKET	cli_sck;
 }		t_network;

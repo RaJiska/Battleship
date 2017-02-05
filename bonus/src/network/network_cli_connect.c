@@ -14,7 +14,11 @@ static int	exit_on_err(const char *title)
 {
   my_putstr_err(title);
   my_putstr_err(": ");
+	#ifndef EPITECH_WINDOWS
   my_putstr_err(strerror(errno));
+	#else
+	my_put_nbr(WSAGetLastError());
+	#endif
   my_putchar('\n');
   return FALSE;
 }
@@ -37,7 +41,15 @@ int	network_cli_connect(t_network *net, const char *addr, int port)
 #else
 int		network_cli_connect(t_network *net, const char *addr, int port)
 {
-  WSADATA	wsa;
-  SOCKET	sck;
+	if (WSAStartup(MAKEWORD(2, 2), &net->wsadata) != 0)
+		return (exit_on_err("ANetwork Error"));
+	memset(&net->srv, 0, sizeof(t_sockaddr));
+	net->srv_sck = socket(AF_INET, SOCK_STREAM, 0);
+	net->srv.sin_family = AF_INET;
+	net->srv.sin_addr.s_addr = inet_addr(addr);
+	net->srv.sin_port = htons(port);
+	if (connect(net->srv_sck, (struct sockaddr *) &net->srv, sizeof(t_sockaddr)) < 0)
+		return (exit_on_err("Network Error"));
+	return TRUE;
 }
 #endif

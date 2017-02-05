@@ -21,10 +21,6 @@ LFLAGS  =	-L../lib/my -lmy
 
 NAME    =	navy
 
-RM      =	rm -f
-
-CP	=	cp -p
-
 SRC     =	src/main.c				\
 		src/navy.c				\
 		src/game_ended.c			\
@@ -46,8 +42,19 @@ SRC     =	src/main.c				\
 
 OBJ     =       $(SRC:.c=.o)
 
-all:	$(NAME)
+ifeq ($(OS), Windows_NT)
+  RM	=	del /f /Q
+  CP	=	copy /Y
+  CFLAGS	+=	-DEPITECH_WINDOWS
+  OBJ	:=	$(subst /,\\, $(OBJ))
+  LFLAGS	+=	-lws2_32
+  NAME	:=	$(addsuffix .exe, $(NAME))
+else
+  RM      =	rm -f
+  CP	=	cp -p
+endif
 
+all:	$(NAME)
 
 $(NAME):	$(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LFLAGS)
