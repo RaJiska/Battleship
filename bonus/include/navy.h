@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Sun Feb  5 12:00:01 2017 Corlouer Doriann
+** Last update Sun Feb  5 16:34:12 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -74,7 +74,7 @@ typedef struct	s_network
   WSADATA	wsadata;
   t_sockaddr	srv;
   t_sockaddr	cli;
-	socklen_t	sck_sz;
+  socklen_t	sck_sz;
   SOCKET	srv_sck;
   SOCKET	cli_sck;
 }		t_network;

@@ -5,7 +5,7 @@
 ## Login   <corlouer_d@epitech.net>
 ## 
 ## Started on  Mon Jan 30 09:34:42 2017 Corlouer Doriann
-## Last update Sat Feb  4 21:01:27 2017 Corlouer Doriann
+## Last update Sun Feb  5 16:32:23 2017 Corlouer Doriann
 ##
 
 CC      =	gcc
@@ -50,7 +50,7 @@ ifeq ($(OS), Windows_NT)
   LFLAGS	+=	-lws2_32
   NAME	:=	$(addsuffix .exe, $(NAME))
 else
-  RM      =	rm -f
+  RM	=	rm -f
   CP	=	cp -p
 endif
 
