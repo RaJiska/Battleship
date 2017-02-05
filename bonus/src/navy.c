@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Sat Feb  4 16:51:27 2017 Corlouer Doriann
+** Last update Sun Feb  5 18:12:23 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
@@ -36,7 +36,7 @@ static void	send_input(int sck)
   my_putstr("attack: ");
   while (!map_pos_isvalid(line = get_next_line(0)))
     {
-      my_putstr_err("wrong position\n");
+      my_putstr("wrong position\n");
       my_putstr("attack: ");
       free(line);
     }
