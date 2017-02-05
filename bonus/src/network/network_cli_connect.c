@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Thu Feb  2 16:09:20 2017 Corlouer Doriann
-** Last update Sat Feb  4 16:46:14 2017 Corlouer Doriann
+** Last update Sun Feb  5 11:46:58 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -19,6 +19,7 @@ static int	exit_on_err(const char *title)
   return FALSE;
 }
 
+#ifndef EPITECH_WINDOWS
 int	network_cli_connect(t_network *net, const char *addr, int port)
 {
   memset(&net->srv, 0, sizeof(t_sockaddr));
@@ -33,3 +34,10 @@ int	network_cli_connect(t_network *net, const char *addr, int port)
     return (exit_on_err("Network Error"));
   return TRUE;
 }
+#else
+int		network_cli_connect(t_network *net, const char *addr, int port)
+{
+  WSADATA	wsa;
+  SOCKET	sck;
+}
+#endif

@@ -5,13 +5,13 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Sat Feb  4 21:56:34 2017 Corlouer Doriann
+** Last update Sun Feb  5 12:00:01 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
 # define NAVY_H_
 
-# ifdef NAVY_WINDOWS
+# ifdef EPITECH_WINDOWS
 #include <windows.h>
 #include <winsock2.h>
 #include <ws2tcpip.h>
@@ -47,14 +47,15 @@
 #define	NAVY_NET_MXSZ	128
 #define NAVY_NET_PORT	1111
 
-typedef struct sockaddr_in t_sockaddr;
-
 typedef struct	s_map
 {
   int		sck;
   int		player_no;
   char		**map;
 }		t_map;
+
+# ifndef EPITECH_WINDOWS
+typedef struct sockaddr_in	t_sockaddr;
 
 typedef struct	s_network
 {
@@ -63,8 +64,19 @@ typedef struct	s_network
   socklen_t	sck_sz;
   int		srv_sck;
   int		cli_sck;
-  int		active_sck;
 }		t_network;
+# else
+typedef struct addrinfo	t_addrinfo;
+
+typedef struct	s_network
+{
+  WSADATA	*wsadata;
+  t_addrinfo	srv;
+  t_addrinfo	cli;
+  SOCKET	srv_sck;
+  SOCKET	cli_sck;
+}		t_network;
+#endif
 
 int	navy(t_map *p1, t_map *p2, const char *addr, int port);
 int	game_ended(const t_map *p1, const t_map *p2);
