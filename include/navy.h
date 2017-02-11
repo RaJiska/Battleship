@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Sat Feb  4 21:48:36 2017 Corlouer Doriann
+** Last update Sat Feb 11 10:57:23 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -33,6 +33,7 @@
 #define NAVY_SHIP_M	4
 #define NAVY_SHIP_L	5
 #define NAVY_MSG_DELAY	10000
+#define NAVY_SND_DELAY	1000
 #define NAVY_MAP_VOID	'.'
 #define	NAVY_MAP_HIT	'x'
 #define NAVY_MAP_MISS	'o'

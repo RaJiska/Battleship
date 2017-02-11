@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 15:09:07 2017 Corlouer Doriann
-** Last update Tue Jan 31 18:20:50 2017 Corlouer Doriann
+** Last update Sat Feb 11 10:57:46 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
@@ -13,7 +13,7 @@
 static void	send_kill(int pid, int sig)
 {
   kill(pid, sig);
-  usleep(30);
+  usleep(NAVY_SND_DELAY);
 }
 
 void		signal_send(pid_t pid, int msg_type, t_2DVector *vec)
