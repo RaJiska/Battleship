@@ -5,15 +5,28 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 11:15:30 2017 Corlouer Doriann
-** Last update Sun Feb  5 18:11:37 2017 Corlouer Doriann
+** Last update Sat Feb 11 16:35:27 2017 Corlouer Doriann
 */
 
 #include "../include/navy.h"
 
 static void	get_consequences(t_map *p1, t_map *p2)
 {
+  int		sig_bak;
+
+  sig_bak = g_sigvalue;
   while (!signal_msg_iscorrect())
-    usleep(NAVY_MSG_DELAY);
+    {
+      usleep(NAVY_CHK_DELAY);
+      if (sig_bak != g_sigvalue)
+	{
+	  sig_bak = g_sigvalue;
+	  SEND_PONG(p2->pid);
+	}
+    }
+  g_sigvalue = 0;
+  receive_pong();
+  g_sigvalue = sig_bak;
   if ((g_sigvalue / NAVY_SIG_MAX) == NAVY_SIG_ATCK)
     receive_atck(p1, p2->pid);
   else if ((g_sigvalue / NAVY_SIG_MAX) == NAVY_SIG_HIT)
@@ -37,6 +50,7 @@ static void	send_input(pid_t pid)
     }
   map_pos_toint(line, &pos);
   signal_send(pid, NAVY_SIG_ATCK, &pos);
+  SEND_PONG(pid);
   free(line);
 }
 

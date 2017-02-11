@@ -5,20 +5,26 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Tue Jan 31 15:02:16 2017 Corlouer Doriann
-** Last update Sat Feb  4 20:55:44 2017 Corlouer Doriann
+** Last update Sat Feb 11 16:38:03 2017 Corlouer Doriann
 */
 
 #include "../../include/navy.h"
+
+static void	fill_vec(t_2DVector *pos)
+{
+  g_sigvalue /= 10;
+  pos->y = g_sigvalue % 10;
+  g_sigvalue /= 10;
+  pos->x = g_sigvalue % 10;
+}
 
 void		receive_atck(t_map *p1, pid_t sendback)
 {
   t_2DVector	pos;
   char		buffer[13];
 
-  g_sigvalue /= 10;
-  pos.y = g_sigvalue % 10;
-  g_sigvalue /= 10;
-  pos.x = g_sigvalue % 10;
+  fill_vec(&pos);
+  g_sigvalue = 0;
   map_int_topos(&buffer[0], &pos);
   if (p1->map[pos.y][pos.x] != NAVY_MAP_VOID &&
       p1->map[pos.y][pos.x] != NAVY_MAP_MISS &&
@@ -35,5 +41,6 @@ void		receive_atck(t_map *p1, pid_t sendback)
 	p1->map[pos.y][pos.x] = NAVY_MAP_MISS;
       my_strcpy(&buffer[2], ": missed\n\n");
     }
+  SEND_PONG(sendback);
   my_putstr(&buffer[0]);
 }

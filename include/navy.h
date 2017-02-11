@@ -5,7 +5,7 @@
 ** Login   <corlouer_d@epitech.net>
 ** 
 ** Started on  Mon Jan 30 09:47:42 2017 Corlouer Doriann
-** Last update Sat Feb 11 10:57:23 2017 Corlouer Doriann
+** Last update Sat Feb 11 13:36:43 2017 Corlouer Doriann
 */
 
 #ifndef NAVY_H_
@@ -32,11 +32,11 @@
 #define NAVY_SHIP_S	3
 #define NAVY_SHIP_M	4
 #define NAVY_SHIP_L	5
-#define NAVY_MSG_DELAY	10000
-#define NAVY_SND_DELAY	1000
+#define NAVY_CHK_DELAY	10000
 #define NAVY_MAP_VOID	'.'
 #define	NAVY_MAP_HIT	'x'
 #define NAVY_MAP_MISS	'o'
+#define SEND_PONG(x)	kill((x), SIGUSR2)
 
 typedef struct	s_map
 {
@@ -54,6 +54,7 @@ void	print_maps(const t_map *p1, const t_map *p2);
 void	receive_atck(t_map *p1, pid_t sendback);
 void	receive_hit(t_map *p2);
 void	receive_miss(t_map *p2);
+void	receive_pong(void);
 int	signal_setup(void);
 void	signal_send(pid_t pid, int msg_type, t_2DVector *vec);
 int	signal_msg_iscorrect(void);
